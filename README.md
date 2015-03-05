@@ -10,6 +10,7 @@ README
 * `~/.profile` has the stuff NOT specifically related to bash, such as environment variable definitions (PATH and friends).
 * `~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings.
 * `~/.bash_profile` should be super-simple and just load `.profile` and `.bashrc` (in that order). It is read by bash only, not by any other shell.
+
 ### Bash/Zsh startup files loading order
 Moral:
 
