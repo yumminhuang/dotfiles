@@ -1,22 +1,2 @@
-if brew list | grep coreutils > /dev/null ; then
-  PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-  alias ls='ls -F --show-control-chars --color=auto'
-  eval `gdircolors -b $HOME/.dir_colors`
-fi
-
-# Shortcuts
-alias ll='ls -lht'
-alias la="ls -ha"
-alias lsd='ls -l | grep "^d"'
-
-export PATH=/usr/local/bin:$PATH
-
-# Make vim the default editor.
-export EDITOR='vim';
-
-# Always enable colored `grep` output.
-export GREP_OPTIONS='--color=auto';
-
-# Language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# Load the default .profile
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
