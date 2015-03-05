@@ -131,21 +131,6 @@
     changed = green
     untracked = cyan
 
-[diff]
-
-    # Detect copies as well as renames
-    renames = copies
-
-[help]
-
-    # Automatically correct and execute mistyped commands
-    autocorrect = 1
-
-[merge]
-
-    # Include summaries of merged commits in newly created merge commit messages
-    log = true
-
 [push]
 
     # Use the Git 1.x.x default to avoid errors on machines with old Git

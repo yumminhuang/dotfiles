@@ -16,14 +16,16 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-export LANG=UTF-8
-export LANGUAGE=en_US.UTF-8
+# Languages
 export LC_ALL=en_US.UTF-8
-    
+export LANG=en_US.UTF-8
+
+# PATH
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
 # Editor Setting
-export EDITOR=/usr/bin/vi
+export EDITOR=/usr/bin/vim

@@ -8,8 +8,8 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="pygmalion"
 
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="subl ~/.zshrc"
+alias ohmyzsh="subl ~/.oh-my-zsh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -48,28 +48,30 @@ ZSH_THEME="pygmalion"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git sublime textmate ruby python osx)
 
 source $ZSH/oh-my-zsh.sh
 
+# Load nvironment variables from .profile
+emulate sh
+. ~/.profile
+emulate zsh
+
+# Zsh history
+HISTSIZE=5000               #How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     #Where to save history to disk
+SAVEHIST=5000               #Number of history entries to save to disk
+HISTDUP=erase               #Erase duplicates in the history file
+
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/Users/yummin/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# Alias and shortcuts
+# Show human friendly numbers and colors
+alias df='df -h'
+alias du='du -h -d 2'
+alias lsd='ls -l | grep "^d"'
+alias mkdir='mkdir -pv'
+alias ll='ls -lhv'
+alias lr='ll -R'           #  Recursive ls.
+alias la='ls -A'           #  Show hidden files
+alias grep='grep --color=auto'
