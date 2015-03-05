@@ -1,0 +1,165 @@
+# i3 config file
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# Solarized Color Scheme
+set $base03 #002b36
+# background
+set $base01 #586e75
+#comments / secondary content
+set $base1 #93a1a1
+# body text / default code / primary content
+set $orange #cb4b16
+# constants
+set $red #dc322f
+# regex, special keywords
+set $blue #268bd2
+# reserved keywords
+set $cyan #2aa198
+# strings, numbers
+set $green #859900
+# operators, other keywords
+
+set $base01 #586e75
+# body text / default code / primary content
+set $base1 #93a1a1
+# comments / secondary content
+set $base3 #fdf6e3
+# background
+
+# Use Windows key as Mod
+set $mod Mod4
+
+# font for window titles. ISO 10646 = Unicode
+# change font for readability
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
+font pango:Terminus 11px
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec gnome-terminal
+
+# kill focused window
+bindsym $mod+Shift+Q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+
+# change focus
+# default keys altered to match those of vim
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+# default keys altered to match those of vim
+bindsym $mod+Shift+H move left
+bindsym $mod+Shift+J move down
+bindsym $mod+Shift+K move up
+bindsym $mod+Shift+L move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horiZontal orientation (Tall)
+# need to change this because "Mod+h" no longer free
+bindsym $mod+z split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout default
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindcode $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+exclam move workspace 1
+bindsym $mod+Shift+quotedbl move workspace 2
+bindsym $mod+Shift+sterling move workspace 3
+bindsym $mod+Shift+dollar move workspace 4
+bindsym $mod+Shift+percent move workspace 5
+bindsym $mod+Shift+asciicircum move workspace 6
+bindsym $mod+Shift+ampersand move workspace 7
+bindsym $mod+Shift+asterisk move workspace 8
+bindsym $mod+Shift+parenleft move workspace 9
+bindsym $mod+Shift+parenright move workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+C reload
+# restart i3 inplace (preserves your layout/session, can be used to
+# upgrade i3)
+bindsym $mod+Shift+R restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+E exit
+
+# Start i3bar to display a workspace bar
+# plus the system information i3status
+
+bar {
+status_command i3status
+output         eDP1
+position       top
+
+colors {
+    background $base03
+    statusline $base1
+    separator $base01
+    # <border> <background> <text>
+    focused_workspace  $base1 $base1 $orange
+    active_workspace   $base1 $base1 $green
+    inactive_workspace $base01 $base01 $cyan
+    urgent_workspace   $base01 $base01 $red
+    }
+}
+
+# change colour: border background text indicator
+client.focused          $base3 $base3 $base01 #333333
+client.focused_inactive $base1 $base1 #base01 #000000
+client.unfocused        $base01 $base01 $base1 #000000
+client.urgent           $base3 $base3 $red #900000
+# client.placeholder      #000000 #0c0c0c #ffffff #000000
+
+# Run unclutter when starting
+exec --no-startup-id unclutter
