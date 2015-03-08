@@ -1,7 +1,6 @@
 README
 ===
 
-* setup script is modified from [riobard](https://github.com/riobard)/[dotfiles](https://github.com/riobard/dotfiles)
 * Some configuration are inspired by example in [dotfiles.github.io](https://dotfiles.github.io)
 
 
@@ -12,10 +11,10 @@ README
 * `~/.bash_profile` should be super-simple and just load `.profile` and `.bashrc` (in that order). It is read by bash only, not by any other shell.
 
 ### Bash/Zsh startup files loading order
-Moral:
+**Moral**:
 
- * For **bash**, put stuff in `~/.bashrc`, and make `~/.bash_profile` source it.
- * For **zsh**, put stuff in `~/.zshrc`, which is always executed.
+* For **bash**, put stuff in `~/.bashrc`, and make `~/.bash_profile` source it.
+* For **zsh**, put stuff in `~/.zshrc`, which is always executed.
 
 Reference: [Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)](https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/)
 
