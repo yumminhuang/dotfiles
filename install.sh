@@ -37,6 +37,8 @@ main () {
             fi
             download_to 'i3_config' ~/.config/i3 config
             download_to 'i3status_config' ~/.config/i3status config
+            # Dowload bash-powerline.sh
+            curl https://raw.github.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
             ;;
         *)
             echo 'Not support this OS'
