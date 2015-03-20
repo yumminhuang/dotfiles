@@ -3,8 +3,12 @@ README
 
 * Some configuration are inspired by example in [dotfiles.github.io](https://dotfiles.github.io)
 
+## Install
+```
+curl https://github.com/yumminhuang/dotfiles/raw/master/install.sh | sh
+```
 
-##Notes
+## Notes
 ### Difference between .bashrc, .bash_profile and .profile
 * `~/.profile` has the stuff NOT specifically related to bash, such as environment variable definitions (PATH and friends).
 * `~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings.
