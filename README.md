@@ -5,7 +5,7 @@ README
 
 ## Install
 ```
-curl https://github.com/yumminhuang/dotfiles/raw/master/install.sh | sh
+curl https://raw.githubusercontent.com/yumminhuang/dotfiles/master/install.sh | sh
 ```
 
 ## Notes
