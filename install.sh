@@ -31,12 +31,18 @@ main () {
             echo 'Install dotfiles for Linux'
             download_to 'bash_profile' ~
             download_to 'bashrc' ~
-            # Create .config directory
-            if [ ! -d '~/.config' ]; then
-              mkdir -p ~/.config
+            if which i3 >/dev/null; then
+                echo 'i3 exists'
+                # Create .config directory
+                if [ ! -d '~/.config' ]; then
+                    mkdir -p ~/.config
+                fi
+                download_to 'i3_config' ~/.config/i3 config
+                download_to 'i3status_config' ~/.config/i3status config
+            else
+                echo 'i3 does not exist'
             fi
-            download_to 'i3_config' ~/.config/i3 config
-            download_to 'i3status_config' ~/.config/i3status config
+
             # Dowload bash-powerline.sh
             curl https://raw.github.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
             ;;

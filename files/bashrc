@@ -63,9 +63,6 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -77,6 +74,7 @@ alias mkdir='mkdir -pv'
 alias du='du -kh'    # Makes a more readable output.
 alias df='df -kTh'
 alias lsd='ls -l | grep "^d"'
+# Add colors for filetype and  human-readable sizes by default on 'ls':
 alias ls='ls -h --color'
 alias lx='ls -lXB'         #  Sort by extension.
 alias lk='ls -lSr'         #  Sort by size, biggest last.
@@ -86,7 +84,12 @@ alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
 alias ll="ls -lhv --group-directories-first"
 alias lm='ll | more'        #  Pipe through 'more'
 alias lr='ll -R'           #  Recursive ls.
-alias la='ls -A'           #  Show hidden files
+alias la='ls -A'           #  Show hidden files.
+
+alias more='less'
+
+# Move FILE to trash: `trash FILE`
+alias trash='gvfs-trash'
 
 # Functions
 function extract {
@@ -120,6 +123,9 @@ function extract {
     fi
 fi
 }
+
+# psa PROCESS_NAME
+function psa() { ps aux | grep $1; }
 
 # Creates an archive (*.tar.gz) from given directory.
 function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
