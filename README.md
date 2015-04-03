@@ -24,4 +24,6 @@ Reference: [Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)](https:/
 
 
 ##LICENSE
-[CC0 1.0 Universal](http://creativecommons.org/publicdomain/zero/1.0/)
+![CC0 1.0](https://licensebuttons.net/p/zero/1.0/88x31.png)
+
+This Project by [YumminHuang](https://github.com/yumminhuang) is licensed under [CC0 1.0 Universal](http://creativecommons.org/publicdomain/zero/1.0/).
