@@ -1,12 +1,17 @@
 README
 ===
 
-* Some configuration are inspired by example in [dotfiles.github.io](https://dotfiles.github.io)
+Download and install dot files to simplify system configuration.
 
 ## Install
 ```
 curl https://raw.githubusercontent.com/yumminhuang/dotfiles/master/install.sh | sh
 ```
+
+## Acknowledgements
+
+* Some configurations are inspired by examples in [dotfiles.github.io](https://dotfiles.github.io)
+* Integrated [bash-powerline](https://github.com/riobard/bash-powerline) in Bash
 
 ## Notes
 ### Difference between .bashrc, .bash_profile and .profile
