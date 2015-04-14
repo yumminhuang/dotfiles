@@ -1,28 +1,46 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+#-------------------------------------------------------------
+# Some settings
+#-------------------------------------------------------------
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+#set -o nounset     # These  two options are useful for debugging.
+#set -o xtrace
+alias debug="set -o nounset; set -o xtrace"
+
+ulimit -S -c 0      # Don't want coredumps.
+set -o notify
+set -o noclobber
+set -o ignoreeof
+
+# Enable options:
+shopt -s cdspell
+shopt -s cdable_vars
+shopt -s checkhash
+shopt -s checkwinsize
+shopt -s sourcepath
+shopt -s no_empty_cmd_completion
+shopt -s cmdhist
+shopt -s histappend histreedit histverify
+shopt -s extglob       # Necessary for programmable completion.
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# Disable options:
+shopt -u mailwarn
+unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -32,32 +50,6 @@ esac
 # Enable 256 colors for terminal
 export TERM=screen-256color
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
-    else
-    color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -81,15 +73,20 @@ alias lk='ls -lSr'         #  Sort by size, biggest last.
 alias lt='ls -ltr'         #  Sort by date, most recent last.
 alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
 alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
-alias ll="ls -lhv --group-directories-first"
-alias lm='ll | more'        #  Pipe through 'more'
+# The ubiquitous 'll': directories first, with alphanumeric sorting:
+alias ll="ls -lv --group-directories-first"
+alias lm='ll |more'        #  Pipe through 'more'
 alias lr='ll -R'           #  Recursive ls.
-alias la='ls -A'           #  Show hidden files.
-
+alias la='ll -A'           #  Show hidden files.
+alias tree='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
 alias more='less'
 
 # Move FILE to trash: `trash FILE`
 alias trash='gvfs-trash'
+# Pretty-print of some PATH variables:
+alias path='echo -e ${PATH//:/\\n}'
+alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
+
 
 # Functions
 function extract {
@@ -124,14 +121,38 @@ function extract {
 fi
 }
 
-# psa PROCESS_NAME
-function psa() { ps aux | grep $1; }
-
 # Creates an archive (*.tar.gz) from given directory.
 function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 
 # Create a ZIP archive of a file or folder.
 function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+
+# PROCESS functions
+function psg() { ps aux | grep $1; }
+function my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ; }
+function pp() { my_ps f | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
+function killps()   # kill by process name
+{
+    local pid pname sig="-TERM"   # default signal
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: killps [-SIGNAL] pattern"
+        return;
+    fi
+    if [ $# = 2 ]; then sig=$1 ; fi
+    for pid in $(my_ps| awk '!/awk/ && $0~pat { print $1 }' pat=${!#} )
+    do
+        pname=$(my_ps | awk '$1~var { print $5 }' var=$pid )
+        if ask "Kill process $pid <$pname> with signal $sig?"
+            then kill $sig $pid
+        fi
+    done
+}
+
+# Find a file with a pattern in name:
+function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
+
+# Colorize diff output
+function ddiff(){ diff $1 $2 | colordiff | less -R ; }
 
 # Source bash-powerline: https://github.com/riobard/bash-powerline
 source .bash-powerline.sh
