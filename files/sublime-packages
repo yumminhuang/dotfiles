@@ -1,0 +1,16 @@
+{
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"GitGutter",
+		"Neon Color Scheme",
+		"Package Control",
+		"Python Checker",
+		"PyYapf Python Formatter",
+		"SideBarEnhancements",
+		"sublimelint"
+	]
+}
