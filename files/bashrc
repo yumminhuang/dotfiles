@@ -61,9 +61,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Aliases
-alias apt-get="sudo apt-get"
+alias ..='cd ..'
+alias apt-get='sudo apt-get'
 alias mkdir='mkdir -pv'
-alias du='du -kh'    # Makes a more readable output.
+alias du='du -kh'
 alias df='df -kTh'
 alias lsd='ls -l | grep "^d"'
 # Add colors for filetype and  human-readable sizes by default on 'ls':
@@ -74,7 +75,7 @@ alias lt='ls -ltr'         #  Sort by date, most recent last.
 alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
 alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
 # The ubiquitous 'll': directories first, with alphanumeric sorting:
-alias ll="ls -lv --group-directories-first"
+alias ll='ls -lv --group-directories-first'
 alias lm='ll |more'        #  Pipe through 'more'
 alias lr='ll -R'           #  Recursive ls.
 alias la='ll -A'           #  Show hidden files.
@@ -89,6 +90,29 @@ alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 
 
 # Functions
+
+# Misc utilities:
+function ask()
+{
+    # See 'killps' for example of use.
+    echo -n "$@" '[y/n] ' ; read ans
+    case "$ans" in
+        y*|Y*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+function repeat()
+{
+    # Repeat n times command.
+    local i max
+    max=$1; shift;
+    for ((i=1; i <= max ; i++)); do  # --> C-like syntax
+        eval "$@";
+    done
+}
+
+# Extract compressed files
 function extract {
  if [ -z "$1" ]; then
     # display usage if no parameters given
@@ -127,12 +151,16 @@ function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 # Create a ZIP archive of a file or folder.
 function makezip() { zip -r "${1%%/}.zip" "$1" ; }
 
+# Make your directories and files access rights sane.
+function sanitize() { chmod -R u=rwX,g=rX,o= "$@" ;}
+
 # PROCESS functions
 function psg() { ps aux | grep $1; }
 function my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ; }
 function pp() { my_ps f | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
-function killps()   # kill by process name
+function killps()
 {
+    # kill by process name
     local pid pname sig="-TERM"   # default signal
     if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
         echo "Usage: killps [-SIGNAL] pattern"
@@ -156,3 +184,6 @@ function ddiff(){ diff $1 $2 | colordiff | less -R ; }
 
 # Source bash-powerline: https://github.com/riobard/bash-powerline
 source .bash-powerline.sh
+
+# Start virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
