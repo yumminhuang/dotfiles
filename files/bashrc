@@ -82,6 +82,8 @@ alias la='ll -A'           #  Show hidden files.
 alias tree='tree -Csuh'    #  Nice alternative to 'recursive ls' ...
 alias more='less'
 
+# Syntax-highlighted cat, require `pip install Pygments`
+alias pcat='pygmentize -f terminal256 -O style=native -g'
 # Move FILE to trash: `trash FILE`
 alias trash='gvfs-trash'
 # Pretty-print of some PATH variables:

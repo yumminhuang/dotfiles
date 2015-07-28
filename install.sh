@@ -31,6 +31,7 @@ main () {
             echo 'Install dotfiles for Linux'
             download_to 'bash_profile' ~
             download_to 'bashrc' ~
+
             if which i3 >/dev/null; then
                 echo 'i3 exists'
                 # Create .config directory
