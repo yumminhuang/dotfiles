@@ -1,16 +1,21 @@
 {
+	"bootstrapped": true,
 	"in_process_packages":
 	[
 	],
 	"installed_packages":
 	[
 		"All Autocomplete",
+		"BeautifyRuby",
+		"Dockerfile Syntax Highlighting",
 		"GitGutter",
 		"Neon Color Scheme",
 		"Package Control",
 		"Python Checker",
 		"PyYapf Python Formatter",
 		"SideBarEnhancements",
-		"sublimelint"
+		"sublimelint",
+		"SublimeLinter-shellcheck",
+		"TOML"
 	]
 }
