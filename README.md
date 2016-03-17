@@ -28,7 +28,5 @@ curl https://raw.githubusercontent.com/yumminhuang/dotfiles/master/install.sh | 
 Reference: [Zsh/Bash startup files loading order (.bashrc, .zshrc etc.)](https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/)
 
 
-##LICENSE
-![CC0 1.0](https://licensebuttons.net/p/zero/1.0/88x31.png)
-
-This Project by [YumminHuang](https://github.com/yumminhuang) is licensed under [CC0 1.0 Universal](http://creativecommons.org/publicdomain/zero/1.0/).
+## LICENSE
+This Project by [YumminHuang](https://github.com/yumminhuang) is licensed under MIT License.
