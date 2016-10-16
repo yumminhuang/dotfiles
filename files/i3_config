@@ -139,7 +139,7 @@ bindsym $mod+Shift+E exit
 
 bar {
 status_command i3status
-output         eDP1
+# output         eDP1
 position       top
 
 colors {
