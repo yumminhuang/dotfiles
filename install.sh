@@ -55,6 +55,7 @@ main () {
     download_to 'vimrc' ~
     download_to 'gitconfig' ~
     download_to 'gitignore_global' ~
+    download_to 'tmux.conf' ~
 }
 
 main "$@"
