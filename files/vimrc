@@ -123,6 +123,9 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Color theme
+colo monokai
+
 " Enable syntax highlighting
 syntax enable
 

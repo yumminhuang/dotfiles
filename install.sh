@@ -45,7 +45,7 @@ main () {
             fi
 
             # Dowload bash-powerline.sh
-            curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh > ~/.bash-powerline.sh
+            curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh -o ~/.bash-powerline.sh
             ;;
         *)
             echo 'Not support this OS'
@@ -56,6 +56,8 @@ main () {
     download_to 'gitconfig' ~
     download_to 'gitignore_global' ~
     download_to 'tmux.conf' ~
+    # Download vim color theme: monokai
+    curl https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim --create-dirs -o ~/.vim/colors/monokai.vim
 }
 
 main "$@"
