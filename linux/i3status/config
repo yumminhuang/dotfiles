@@ -1,0 +1,81 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+# http://i3wm.org/i3status/manpage.html
+# This i3status config requires font-awesome
+
+general {
+  output_format = "i3bar"
+  colors = true
+  interval = 5
+}
+
+order += "cpu_usage"
+#order += "cpu_temperature 0"
+order += "load"
+order += "disk /"
+#order += "wireless wlan0"
+order += "ethernet eth0"
+order += "run_watch DHCP"
+#order += "run_watch VPN"
+#order += "battery 0"
+order += "volume master"
+order += "tztime local"
+
+battery 0 {
+  last_full_capacity = true
+  format = " status %percentage %remaining %emptytime"
+  format_down = "No battery"
+  status_chr = "⚇ CHR"
+  status_bat = "⚡ BAT"
+  status_full = "☻ FULL"
+  path = "/sys/class/power_supply/BAT%d/uevent"
+  low_threshold = 10
+}
+
+ethernet eth0 {
+  # if you use %speed, i3status requires root privileges
+  format_up = " eth0  %speed  %ip"
+  format_down = ""
+}
+
+wireless wlan0 {
+  format_up = " wlan0   %quality  %essid   %speed  %ip"
+  format_down = " wlan0 "
+}
+
+tztime local {
+  format = "  %Y-%m-%d,%A,%H:%M:%S"
+}
+
+load {
+  format = "  %1min, %5min"
+}
+
+cpu_usage {
+  format = "  %usage"
+}
+
+cpu_temperature 0 {
+  format = " %degrees °C"
+  max_threshold = "65"
+}
+
+disk "/" {
+  format = "  %avail"
+}
+
+volume master {
+  format = " %volume"
+  format_muted = " %volume"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
+}
+
+run_watch VPN {
+  pidfile = "/var/run/openvpn.pid"
+}
+
+run_watch DHCP {
+  pidfile = "/var/run/dhclient*.pid"
+}

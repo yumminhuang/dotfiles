@@ -123,8 +123,8 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Color theme
-colo monokai
+" color theme /usr/share/vim/vim74/colors/
+colo darkblue
 
 " Enable syntax highlighting
 syntax enable

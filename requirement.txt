@@ -3,6 +3,7 @@
 # Use virtualenv for each project to isolate python modules,
 # only install necessary python modules.
 
+powerline
 ptpython
 pylint
 virtualenv
