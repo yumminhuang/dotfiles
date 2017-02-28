@@ -3,6 +3,11 @@ README
 
 Download and install dot files to simplify system configuration.
 
+## Features
+* [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) for macOS and Bash for Ubuntu
+* [i3wm](https://i3wm.org/) configuration on Ubuntu
+* Customized `.zshrc`, `.bashrc`, `.tmux.conf` and `.gitconfig`
+
 ## Install
 ```
 curl https://raw.githubusercontent.com/yumminhuang/dotfiles/master/install.sh | sh
