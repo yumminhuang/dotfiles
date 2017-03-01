@@ -1,63 +1,29 @@
 #!/usr/bin/env bash
 
-HUB=https://raw.githubusercontent.com/yumminhuang/dotfiles/master/files
+echo 'clone dotfiles repository'
+git clone https://github.com/yumminhuang/dotfiles.git /tmp/dotfiles
+cd /tmp/dotfiles
 
-# Function Declarations
+echo 'copy dotfiles'
+find base/ -maxdepth 1 -type f ! -path base/ | xargs cp -rt
+case "$(uname)" in
+    Darwin)
+        find mac/ -maxdepth 1 -type f ! -path mac/ | xargs cp -t $HOME
+        ;;
+    Linux)
+        find linux/ -maxdepth 1 -type f ! -path linux/ | xargs cp -t $HOME
+        if which i3 >/dev/null; then
+            echo 'i3 exists'
+            # Create .config directory
+            [ -d "$HOME/.config" ] || mkdir -p $HOME/.config
+            find linux/ -maxdepth 1 -type d ! -path linux/ | xargs cp -rt $HOME/.config/
+        else
+            echo 'i3 does not exist, skip i3 configuration'
+        fi
 
-# $1: File name
-# $2: Directory name
-download_to () {
-    file=$1
-    destination=$2
-    echo Download .$file to $destination
-    if [ ! -z "$3" ]
-      then
-        new_name=$3
-        curl -L $HUB/$file > $destination/$new_name
-    else
-        curl -L $HUB/$file > $destination/.$file
-    fi
-}
-
-# Mian Logic: Downloading dot files
-main () {
-    # what OS?
-    case "$(uname)" in
-        Darwin)
-            echo 'Install dotfiles for Mac'
-            download_to 'zshrc' ~
-            ;;
-        Linux)
-            echo 'Install dotfiles for Linux'
-            download_to 'bash_profile' ~
-            download_to 'bashrc' ~
-
-            if which i3 >/dev/null; then
-                echo 'i3 exists'
-                # Create .config directory
-                if [ ! -d '~/.config' ]; then
-                    mkdir -p ~/.config
-                fi
-                download_to 'i3_config' ~/.config/i3 config
-                download_to 'i3status_config' ~/.config/i3status config
-            else
-                echo 'i3 does not exist'
-            fi
-
-            # Dowload bash-powerline.sh
-            curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh -o ~/.bash-powerline.sh
-            ;;
-        *)
-            echo 'Not support this OS'
-    esac
-    # Both Linux and Mac need following files
-    download_to 'profile' ~
-    download_to 'vimrc' ~
-    download_to 'gitconfig' ~
-    download_to 'gitignore_global' ~
-    download_to 'tmux.conf' ~
-    # Download vim color theme: monokai
-    curl https://raw.githubusercontent.com/sickill/vim-monokai/master/colors/monokai.vim --create-dirs -o ~/.vim/colors/monokai.vim
-}
-
-main "$@"
+        # Dowload bash-powerline.sh
+        curl https://raw.githubusercontent.com/riobard/bash-powerline/master/bash-powerline.sh -o ~/.bash-powerline.sh
+        ;;
+    *)
+        echo 'Not support this OS'
+esac
