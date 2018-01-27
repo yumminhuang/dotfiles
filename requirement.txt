@@ -3,8 +3,11 @@
 # Use virtualenv for each project to isolate python modules,
 # only install necessary python modules.
 
+ansible
+Fabric
 powerline
 ptpython
+Pygments
 pylint
 virtualenv
 virtualenvwrapper
