@@ -6,7 +6,7 @@ set -e
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Install must-have homebrew packages
-packages=( htop httpie tig tmux tree )
+packages=( diff-so-fancy htop httpie jq tig tmux tree youtube-dl yq )
 
 for i in "${packages[@]}"
 do
