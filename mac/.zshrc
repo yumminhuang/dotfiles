@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="zeta"
 
 # Example aliases
 alias zshconfig="subl ~/.zshrc"
@@ -48,7 +48,7 @@ alias ohmyzsh="subl ~/.oh-my-zsh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git sublime textmate ruby python extract virtualenvwrapper docker tmux jsontools colorize)
+plugins=(git sublime ruby python extract tmux jsontools colorize terraform)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -80,3 +80,8 @@ alias grep='grep --color=auto'
 alias hgrep="fc -El 0 | grep"  # grep command history
 alias fd='find . -type d -name'
 alias ff='find . -type f -name'
+
+# Update all git repo in workspace
+alias pullall='ls -d */ | xargs -I{} git -C {} pull'
+# Fetch my public IP
+alias myip='curl -4s https://ipinfo.io/ip'

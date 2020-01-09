@@ -1,6 +1,10 @@
 [user]
     name = Huang Yaming
     email = yumminhuang+github@gmail.com
+    signingkey = 5B5CF10AFA9C816DA105263FFFF4AB2FA6F44163
+
+[commit]
+    gpgsign = true
 
 [filter "media"]
     required = true

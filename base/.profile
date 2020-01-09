@@ -29,5 +29,5 @@ fi
 # Editor Setting
 export EDITOR=/usr/bin/vi
 
-# virtualenvwrapper Home
-export WORKON_HOME=$HOME/.virtualenvs
+# GPG
+export GPG_TTY=$(tty)
