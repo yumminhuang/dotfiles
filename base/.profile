@@ -31,3 +31,6 @@ export EDITOR=/usr/bin/vi
 
 # GPG
 export GPG_TTY=$(tty)
+
+# AWS
+export AWS_PAGER=""

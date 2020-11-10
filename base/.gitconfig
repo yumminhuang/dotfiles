@@ -150,3 +150,7 @@
 
 [url "git://gist.github.com/"]
     insteadOf = "gist:"
+
+# Customized diff
+[diff "ansible-vault"]
+    textconv = "ansible-vault view"
