@@ -5,10 +5,10 @@ git clone https://github.com/yumminhuang/dotfiles.git /tmp/dotfiles
 cd /tmp/dotfiles
 
 echo 'copy dotfiles'
-find base/ -maxdepth 1 -type f ! -path base/ | xargs cp -rt
+cp base/.* $HOME/
 case "$(uname)" in
     Darwin)
-        find mac/ -maxdepth 1 -type f ! -path mac/ | xargs cp -t $HOME
+        cp mac/.* $HOME/
         ;;
     Linux)
         find linux/ -maxdepth 1 -type f ! -path linux/ | xargs cp -t $HOME
