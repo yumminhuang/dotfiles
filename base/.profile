@@ -25,6 +25,7 @@ export LC_ALL=en_US.UTF-8
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+export PATH="/usr/local/sbin:$PATH"
 
 # Editor Setting
 export EDITOR=/usr/bin/vi

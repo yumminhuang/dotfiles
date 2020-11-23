@@ -23,6 +23,11 @@ alias ohmyzsh="subl ~/.oh-my-zsh"
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
+# Colorize supports pygmentize and chroma as syntax highlighter.
+ZSH_COLORIZE_TOOL=chroma
+ZSH_COLORIZE_STYLE="dracula"
+ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
+
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -48,7 +53,7 @@ alias ohmyzsh="subl ~/.oh-my-zsh"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colorize extract git git-prompt jsontools python ruby sublime terraform tmux)
+plugins=(aws colorize docker extract git git-prompt jsontools osx otp terraform tmux vscode)
 
 source $ZSH/oh-my-zsh.sh
 
