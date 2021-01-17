@@ -10,4 +10,4 @@ brew install ansible awscli azure-cli diff-so-fancy httpie ipcalc jq oath-toolki
 # Install must-have homebrew softwares
 brew cask install docker drawio insomnia iterm2 multipass session-manager-plugin virtualbox visual-studio-code wireshark
 # Install Hashicorp softwares
-brew install hashicorp/tap/consul hashicorp/tap/nomad hashicorp/tap/packer hashicorp/tap/vault
+brew install hashicorp/tap/consul hashicorp/tap/nomad hashicorp/tap/packer hashicorp/tap/terraform hashicorp/tap/vault
