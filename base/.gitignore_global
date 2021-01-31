@@ -1,6 +1,7 @@
 # Python compiled files
-*.pyc
-*.pyo
+__pycache__/
+*.py[cod]
+*$py.class
 
 # Subversion
 .svn
@@ -77,7 +78,7 @@ Temporary Items
 # ######################
 # Local .terraform directories
 **/.terraform/*
-
+*.tfvars
 # .tfstate files
 *.tfstate
 *.tfstate.*
