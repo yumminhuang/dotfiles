@@ -10,8 +10,9 @@
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTIGNORE='pwd:exittop:clear:history:ls:uptime:df'
 
 #set -o nounset     # These  two options are useful for debugging.
 #set -o xtrace
