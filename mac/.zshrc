@@ -53,7 +53,7 @@ ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(aws colorize docker extract git git-prompt jsontools osx otp terraform tmux vscode)
+plugins=(aws brew colorize common-aliases docker extract git git-prompt jsontools osx otp terraform tmux vscode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -70,21 +70,11 @@ HISTDUP=erase               #Erase duplicates in the history file
 
 # User configuration
 
-# ls, the common ones I use a lot shortened for rapid fire usage
-alias l='ls -lFh'     #size,show type,human readable
-alias la='ls -AFh'    #show almost all,show type,human readable
-alias ll='ls -ltFh'   #long list,sorted by date,show type,human readable
-alias ldot='ls -ld .*'
-
 # Alias and shortcuts
 alias tree='tree -ah --du'
 alias df='df -h'
 alias du='du -h -d 2'
 alias mkdir='mkdir -pv'
-alias grep='grep --color=auto'
-alias hgrep="fc -El 0 | grep"  # grep command history
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
 
 # Update all git repo in workspace
 alias pullall='ls -d */ | xargs -I{} git -C {} pull'
