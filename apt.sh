@@ -7,8 +7,15 @@ set -e
 
 # Install must-have apt-get packages
 apt update
-apt install -y fonts-font-awesome \
+apt install -y ansible \
+               awscli \
                htop \
                httpie \
+               jq \
+               python3-venv \
                tig \
-               xclip
+               tmux \
+               tree \
+               xclip \
+               yamllint \
+               zsh
