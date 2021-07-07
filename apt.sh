@@ -9,6 +9,7 @@ apt install -y ansible \
                htop \
                httpie \
                jq \
+               python3-pygments \
                python3-venv \
                tig \
                tmux \

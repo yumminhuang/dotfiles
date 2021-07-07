@@ -31,7 +31,7 @@ shopt -s checkwinsize
 shopt -s sourcepath
 shopt -s no_empty_cmd_completion
 shopt -s cmdhist
-shopt -s histappend histreedit histverify
+shopt -s histreedit histverify
 shopt -s extglob       # Necessary for programmable completion.
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -45,11 +45,12 @@ unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# Enable 256 colors for terminal
-export TERM=xterm-256color
+if [ "$color_prompt" = yes ]; then
+    PS1="[\A] \[$(tput sgr0)\]\[\033[38;5;11m\]\u\[$(tput sgr0)\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]\$([ \$? == 0 ] && echo ✓ || echo ✘ )\\$ \[$(tput sgr0)\]"
+fi
 
 
 # enable color support of ls and also add handy aliases
@@ -61,7 +62,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# Aliases
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
 alias ..='cd ..'
 alias apt-get='sudo apt-get'
 alias mkdir='mkdir -pv'
@@ -76,6 +85,7 @@ alias lt='ls -ltr'         #  Sort by date, most recent last.
 alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
 alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
 # The ubiquitous 'll': directories first, with alphanumeric sorting:
+alias l='ls -CF'
 alias ll='ls -lv --group-directories-first'
 alias lm='ll | more'       #  Pipe through 'more'
 alias lr='ll -R'           #  Recursive ls.
@@ -89,12 +99,20 @@ alias pcat='pygmentize -f terminal256 -O style=native -g'
 alias trash='gvfs-trash'
 # Pretty-print of some PATH variables:
 alias path='echo -e ${PATH//:/\\n}'
-alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
-# Use ptpython as the default Python REPL
-alias py='ptpython'
 # pbcopy / pbpastem requre `apt-get install xclip`
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
 
 # Functions
 
@@ -152,6 +170,9 @@ function extract {
 fi
 }
 
+# Find a file with a pattern in name:
+function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
+
 # Creates an archive (*.tar.gz) from given directory.
 function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 
@@ -182,15 +203,3 @@ function killps()
         fi
     done
 }
-
-# Find a file with a pattern in name:
-function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
-
-# Colorize diff output
-function ddiff(){ diff $1 $2 | colordiff | less -R ; }
-
-# Source bash-powerline: https://github.com/riobard/bash-powerline
-source .bash-powerline.sh
-
-# Start virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh

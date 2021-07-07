@@ -25,7 +25,13 @@ export LC_ALL=en_US.UTF-8
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-export PATH="/usr/local/sbin:$PATH"
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Enable 256 colors for terminal
+export TERM=xterm-256color
 
 # Editor Setting
 export EDITOR=/usr/bin/vi
