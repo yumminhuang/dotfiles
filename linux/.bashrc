@@ -1,5 +1,4 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -13,7 +12,7 @@ HISTCONTROL=ignoreboth
 HISTSIZE=10000
 HISTFILESIZE=20000
 HISTIGNORE='pwd:exittop:clear:history:ls:uptime:df'
-
+PROMPT_COMMAND=__prompt_command
 #set -o nounset     # These  two options are useful for debugging.
 #set -o xtrace
 alias debug="set -o nounset; set -o xtrace"
@@ -21,9 +20,9 @@ alias debug="set -o nounset; set -o xtrace"
 ulimit -S -c 0      # Don't want coredumps.
 set -o notify
 set -o noclobber
-set -o ignoreeof
 
 # Enable options:
+if shopt -q login_shell; then IGNOREEOF=10; else IGNOREEOF=0; fi
 shopt -s cdspell
 shopt -s cdable_vars
 shopt -s checkhash
@@ -35,7 +34,6 @@ shopt -s histreedit histverify
 shopt -s extglob       # Necessary for programmable completion.
 # append to the history file, don't overwrite it
 shopt -s histappend
-
 # Disable options:
 shopt -u mailwarn
 unset MAILCHECK        # Don't want my shell to warn me of incoming mail.
@@ -48,10 +46,19 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-if [ "$color_prompt" = yes ]; then
-    PS1="[\A] \[$(tput sgr0)\]\[\033[38;5;11m\]\u\[$(tput sgr0)\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]\$([ \$? == 0 ] && echo ✓ || echo ✘ )\\$ \[$(tput sgr0)\]"
-fi
-
+__prompt_command() {
+    local exit="$?"
+    if [ "$color_prompt" = yes ]; then
+        if [ "$exit" = 0 ]; then
+            PS1="\[\e[0;32m\][\A] \[$(tput sgr0)\]"
+        else
+            PS1="\[\e[0;35m\][\A] \[$(tput sgr0)\]"
+        fi
+        PS1+="\[\e[0;33m\]\u\[$(tput sgr0)\]@\[\e[0;34m\]\h\[$(tput sgr0)\]:\[\e[0;36m\][\w]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
+    else
+        PS1="[\A] \u@\h:[\w]\$([ \$? == 0 ] && echo ✓ || echo ✘ ) $ "
+    fi
+}
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
