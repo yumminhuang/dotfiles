@@ -1,0 +1,4 @@
+# Update all git repo in workspace
+alias pullall='ls -d */ | xargs -I{} git -C {} pull'
+# Fetch my public IP
+alias myip='curl -4s https://ipinfo.io/ip'

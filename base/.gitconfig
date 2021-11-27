@@ -6,6 +6,15 @@
 [commit]
     gpgsign = true
 
+[pull]
+    rebase = false
+
+[push]
+    # Use the Git 1.x.x default to avoid errors on machines with old Git
+    # installations. To use `simple` instead, add this to your `~/.extra` file:
+    # `git config --global push.default simple`. See http://git.io/mMah-w.
+    default = matching
+
 [filter "media"]
     required = true
     clean = git media clean %f
@@ -107,7 +116,7 @@
     # unversioned.
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
     precomposeunicode = false
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = delta
 
 [color]
     # Use colors in Git commands that are capable of colored output when
@@ -137,12 +146,6 @@
     added = yellow
     changed = green
     untracked = cyan
-
-[push]
-    # Use the Git 1.x.x default to avoid errors on machines with old Git
-    # installations. To use `simple` instead, add this to your `~/.extra` file:
-    # `git config --global push.default simple`. See http://git.io/mMah-w.
-    default = matching
 
 # URL shorthands
 [url "git://github.com/"]

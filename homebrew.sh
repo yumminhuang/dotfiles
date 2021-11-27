@@ -4,23 +4,25 @@ set -e
 
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Or install Homebrew mirror
+# https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/
 
 # Install must-have homebrew packages
 brew install ansible \
-             awscli \
-             azure-cli \
-             diff-so-fancy \
-             httpie \
-             ipcalc \
-             jq \
-             oath-toolkit \
-             tig \
-             tmux \
-             traefik \
-             wget \
-             yamllint \
-             yapf \
-             yq
+            awscli \
+            azure-cli \
+            delta \
+            httpie \
+            ipcalc \
+            jq \
+            oath-toolkit \
+            tig \
+            tmux \
+            traefik \
+            wget \
+            yamllint \
+            yapf \
+            yq
 
 # Install must-have homebrew softwares
 brew install --cask docker \
@@ -49,7 +51,7 @@ brew install --cask basictex\
 
 # Install Hashicorp softwares
 brew install hashicorp/tap/consul \
-             hashicorp/tap/nomad \
-             hashicorp/tap/packer \
-             hashicorp/tap/terraform \
-             hashicorp/tap/vault
+            hashicorp/tap/nomad \
+            hashicorp/tap/packer \
+            hashicorp/tap/terraform \
+            hashicorp/tap/vault

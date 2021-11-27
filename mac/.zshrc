@@ -56,6 +56,8 @@ ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
 plugins=(aws brew colorize common-aliases docker extract git git-prompt jsontools osx otp terraform tmux vscode)
 
 source $ZSH/oh-my-zsh.sh
+# Project related aliases
+source $HOME/.zsh_aliases
 
 # Load nvironment variables from .profile
 emulate sh
@@ -75,8 +77,3 @@ alias tree='tree -ah --du'
 alias df='df -h'
 alias du='du -h -d 2'
 alias mkdir='mkdir -pv'
-
-# Update all git repo in workspace
-alias pullall='ls -d */ | xargs -I{} git -C {} pull'
-# Fetch my public IP
-alias myip='curl -4s https://ipinfo.io/ip'
